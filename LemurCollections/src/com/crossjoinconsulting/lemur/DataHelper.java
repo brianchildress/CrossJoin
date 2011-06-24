@@ -61,12 +61,13 @@ public class DataHelper {
       dbHelper = new DBHelper(this.context);
       
       this.open();
-      
-      Cursor cService = getAllServices();
-      if (cService == null || cService.getCount() == 0) {
+      Classes.Service[] cService = getAllServices(0);
+      if (cService == null || cService.length == 0) {
           insertService("Books", 0);
           insertService("DVDs", 0);
           insertService("Vinyl", 1);
+          insertUser("jj@crossjoinconuslting.com", "JJ", "Jenkins", "pwd");
+          insertUser("brian.p.childress@crossjoinconuslting.com", "Brian", "Childress", "pwd");
       }
       
       this.close();
@@ -99,7 +100,7 @@ public class DataHelper {
        return db.delete(DATABASE_TABLE_SERVICE, SERVICE_KEY_ROWID + "=" + rowId, null) > 0;
    }
    //---retrieves all the services---
-   public Cursor getAllServices() 
+   private Cursor _getAllServices() 
    {
        return db.query(DATABASE_TABLE_SERVICE, new String[] {
     		   SERVICE_KEY_ROWID, 
@@ -111,8 +112,38 @@ public class DataHelper {
                null, 
                null);
    }
+   public Classes.Service[] getAllServices(long rowId)
+   {
+	   Classes c = new Classes();
+	   Classes.Service[] loSvc = null;
+	   Cursor cur;
+	   if (rowId == 0)
+		   cur = this._getAllServices();
+	   else
+		   cur = this._getService(rowId);
+	   try
+       {
+		   if (cur != null)
+		   {
+			   loSvc = new Classes.Service[cur.getCount()];
+			   cur.moveToFirst();
+			   Integer i = 0;
+			   while (cur.isAfterLast() == false) {
+				   Classes.Service svc = c.new Service();
+				   svc.SvcID = cur.getInt(0);				   
+				   svc.SvcName = cur.getString(1);
+				   svc.PaidSvc = cur.getInt(2);
+				   loSvc[i] = svc;
+				   i += 1;
+				   cur.moveToNext();
+			   }
+		   }
+		   cur.close();		   
+       	} catch (Exception e) {}
+       	return loSvc;
+   }
    //---retrieves a particular service---
-   public Cursor getService(long rowId) throws SQLException 
+   private Cursor _getService(long rowId) throws SQLException 
    {
        Cursor mCursor =
                db.query(true, DATABASE_TABLE_SERVICE, new String[] {
@@ -164,6 +195,7 @@ public class DataHelper {
                null, 
                null);
    }
+   
    //---retrieves a particular key---
    public Cursor getKey(long rowId) throws SQLException 
    {
@@ -207,7 +239,7 @@ public class DataHelper {
    //---retrieves all the services---
    public Cursor getAllItemKey() 
    {
-       return db.query(DATABASE_TABLE_SERVICE, new String[] {
+       return db.query(DATABASE_TABLE_ITEMKEY, new String[] {
     		   ITEMKEY_KEY_ITEMID, 
     		   ITEMKEY_KEY_KEYID,
     		   ITEMKEY_KEY_VALUE}, 
@@ -221,7 +253,7 @@ public class DataHelper {
    public Cursor getItemKey(long rowId) throws SQLException 
    {
        Cursor mCursor =
-               db.query(true, DATABASE_TABLE_SERVICE, new String[] {
+               db.query(true, DATABASE_TABLE_ITEMKEY, new String[] {
             		   ITEMKEY_KEY_ITEMID, 
             		   ITEMKEY_KEY_KEYID,
             		   ITEMKEY_KEY_VALUE}, 
@@ -398,7 +430,7 @@ public class DataHelper {
        return db.delete(DATABASE_TABLE_USERSERVICE, USERSERVICE_KEY_ROWID + "=" + rowId, null) > 0;
    }
    //---retrieves all the user services---
-   public Cursor getAllUserServices() 
+   public Cursor _getAllUserServices() 
    {
        return db.query(DATABASE_TABLE_USERSERVICE, new String[] {
     		   USERSERVICE_KEY_ROWID, 
@@ -410,8 +442,38 @@ public class DataHelper {
                null, 
                null);
    }
+   public Classes.UserService[] getAllUserServices(long rowId)
+   {
+	   Classes c = new Classes();
+	   Classes.UserService[] loUserService = null;
+	   Cursor cur;
+	   if (rowId == 0)
+		   cur = this._getAllUserServices();
+	   else
+		   cur = this._getUserService(rowId);
+	   try
+       {
+		   if (cur != null)
+		   {
+			   loUserService = new Classes.UserService[cur.getCount()];
+			   cur.moveToFirst();
+			   Integer i = 0;
+			   while (cur.isAfterLast() == false) {
+				   Classes.UserService u = c.new UserService();
+				   u.UserSvcID = cur.getInt(0);				   
+				   u.SvcID = cur.getInt(1);
+				   u.UserID = cur.getInt(2);
+				   loUserService[i] = u;
+				   i += 1;
+				   cur.moveToNext();
+			   }
+		   }
+		   cur.close();		   
+       	} catch (Exception e) {}
+       	return loUserService;
+   }
    //---retrieves a particular user service---
-   public Cursor getUserService(long rowId) throws SQLException 
+   public Cursor _getUserService(long rowId) throws SQLException 
    {
        Cursor mCursor =
                db.query(true, DATABASE_TABLE_USERSERVICE, new String[] {
@@ -461,49 +523,69 @@ public class DataHelper {
        return db.delete(DATABASE_TABLE_USER, USER_KEY_ROWID + "=" + rowId, null) > 0;
    }
    //---retrieves all the users---
-   public Cursor getAllUsers() 
+   private Cursor _getAllUsers() 
    {
-	   try {
-		   return db.query(DATABASE_TABLE_USER, new String[] {
-				   USER_KEY_ROWID, 
-				   USER_KEY_NAME,
-				   USER_KEY_FIRSTNAME,
-				   USER_KEY_LASTNAME,
-				   SimpleCrypto.decrypt("LemurCJC", USER_KEY_PWD)}, 
-		           null, 
-		           null, 
-		           null, 
-		           null, 
-		           null);
-       	} catch (Exception e) {
-       		e.printStackTrace();
-       		return null;
-       	}
+	   return db.query(DATABASE_TABLE_USER, new String[] {
+			   USER_KEY_ROWID, 
+			   USER_KEY_NAME,
+			   USER_KEY_FIRSTNAME,
+			   USER_KEY_LASTNAME,
+			   USER_KEY_PWD}, 
+	           null, 
+	           null, 
+	           null, 
+	           null, 
+	           null);
+   }
+   public Classes.User[] getAllUsers(long rowId)
+   {
+	   Classes c = new Classes();
+	   Classes.User[] loUser = null;
+	   Cursor cur;
+	   if (rowId == 0)
+		   cur = this._getAllUsers();
+	   else
+		   cur = this._getUser(rowId);
+	   try
+       {
+		   if (cur != null)
+		   {
+			   loUser = new Classes.User[cur.getCount()];
+			   cur.moveToFirst();
+			   Integer i = 0;
+			   while (cur.isAfterLast() == false) {
+				   Classes.User u = c.new User();
+				   u.UserID = cur.getInt(0);				   
+				   u.UserName = cur.getString(1);
+				   u.FirstName = cur.getString(2);
+				   u.LastName = cur.getString(3);
+				   u.Password = SimpleCrypto.decrypt("LemurCJC", cur.getString(4));
+				   loUser[i] = u;
+				   i += 1;
+				   cur.moveToNext();
+			   }
+		   }
+		   cur.close();		   
+       	} catch (Exception e) {}
+       	return loUser;
    }
    //---retrieves a particular user---
-   public Cursor getUser(long rowId) throws SQLException 
+   private Cursor _getUser(long rowId) throws SQLException 
    {
-	   Cursor mCursor = null;
-	   try
-	   {
-		   mCursor =
-               db.query(true, DATABASE_TABLE_USER, new String[] {
-    				   USER_KEY_ROWID, 
-    				   USER_KEY_NAME,
-    				   USER_KEY_FIRSTNAME,
-    				   USER_KEY_LASTNAME,
-    				   SimpleCrypto.decrypt("LemurCJC", USER_KEY_PWD)}, 
-            		   SERVICE_KEY_ROWID + "=" + rowId, 
-               		null,
-               		null, 
-               		null, 
-               		null, 
-               		null);
-		   if (mCursor != null) {
-			   mCursor.moveToFirst();
-       }
-	   } catch (Exception e) {
-      		e.printStackTrace();
+	   Cursor mCursor = db.query(true, DATABASE_TABLE_USER, new String[] {
+			   USER_KEY_ROWID, 
+			   USER_KEY_NAME,
+			   USER_KEY_FIRSTNAME,
+			   USER_KEY_LASTNAME,
+			   USER_KEY_PWD}, 
+    		   SERVICE_KEY_ROWID + "=" + rowId, 
+       		null,
+       		null, 
+       		null, 
+       		null, 
+       		null);
+	   if (mCursor != null) {
+		   mCursor.moveToFirst();
 	   }
        return mCursor;
    }
@@ -532,7 +614,7 @@ public class DataHelper {
       @Override
       public void onCreate(SQLiteDatabase db) {
          db.execSQL("CREATE TABLE " + DATABASE_TABLE_SERVICE + "(SvcID INTEGER PRIMARY KEY, SvcName TEXT, PaidSvc INTEGER)");
-         db.execSQL("CREATE TABLE " + DATABASE_TABLE_USER + "(UserID INTEGER PRIMARY KEY, UserName TEXT, FirstName TEXT, Password TEXT)");
+         db.execSQL("CREATE TABLE " + DATABASE_TABLE_USER + "(UserID INTEGER PRIMARY KEY, UserName TEXT, FirstName TEXT, LastName TEXT, Password TEXT)");
          db.execSQL("CREATE TABLE " + DATABASE_TABLE_USERSERVICE + "(UserSvcID INTEGER , SvcID INTEGER, UserID INTEGER)");
          db.execSQL("CREATE TABLE " + DATABASE_TABLE_ITEM + "(ItemID INTEGER PRIMARY KEY, UPC TEXT, ItemName TEXT, Created TEXT, CreatorID INTEGER, Modified TEXT, ModifierID INTEGER, ItemImage BLOB)");
          db.execSQL("CREATE TABLE " + DATABASE_TABLE_SERVICEPROVIDER + "(SvcProviderID INTEGER PRIMARY KEY, SvcID INTEGER, SvcProviderName TEXT, URL TEXT, WebSvcName TEXT)");

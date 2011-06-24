@@ -9,9 +9,6 @@
     android:layout_width="fill_parent" 
     android:text="@string/hello" android:layout_height="wrap_content"
     android:paddingBottom="15px" android:paddingTop="15px" />
-<TextView android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       android:text="@string/hello" />
     <TextView android:id="@+id/out_text"
        android:layout_width="fill_parent"
        android:layout_height="wrap_content"
