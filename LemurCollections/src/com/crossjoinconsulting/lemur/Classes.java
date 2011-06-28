@@ -33,7 +33,7 @@ public class Classes
 		public String ItemImage;
 	}
 	
-	public class ServiceProvicer{
+	public class ServiceProvider{
 		public long SvcProviderID;
 		public long SvcID;
 		public String SvcProvider;
@@ -41,10 +41,16 @@ public class Classes
 		public String WebSvcName;		
 	}
 	
-	public class ItemKey{
+	public class ItemServiceKey{
 		public long ItemID;
-		public long KeyID;
+		public long ServiceKeyID;
 		public String Value;
+	}
+	
+	public class ServiceKey{
+		public long ServiceKeyID;
+		public long KeyID;
+		public long ServiceID;
 	}
 	
 	public class Key{

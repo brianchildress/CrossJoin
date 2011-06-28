@@ -1,7 +1,6 @@
 package com.crossjoinconsulting.lemur;
 
 import android.app.Activity;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -43,6 +42,11 @@ public class LemurCollectionsActivity extends Activity
         Classes.Service[] svc = dh.getAllServices(0);
         Classes.User[] u = dh.getAllUsers(0);
         Classes.UserService[] us = dh.getAllUserServices(0);
+        Classes.Item[] item = dh.getAllItem(0);
+        Classes.ServiceProvider[] sp = dh.getAllServiceProviders(0);
+        Classes.ItemServiceKey[] ik = dh.getAllItemServiceKey(0);
+        Classes.ServiceKey[] sk = dh.getAllServiceKeys(0);
+        Classes.Key[] k = dh.getAllKeys(0);
         
         sb.append("Services" + "\n");
         try
@@ -58,7 +62,6 @@ public class LemurCollectionsActivity extends Activity
 	   	}
         
         sb.append("\n" + "Users" + "\n");
-        Cursor cur = null;
         try
         {
         	for(int i = 0; i < u.length; i++)
@@ -89,70 +92,73 @@ public class LemurCollectionsActivity extends Activity
         sb.append("\n" + "Items" + "\n");
         try
         {
-        cur = dh.getAllItem();
-        if (cur != null)
-        {
-        cur.moveToFirst();
-        while (cur.isAfterLast() == false) {
-            sb.append(cur.getString(1) + "\n");
-            cur.moveToNext();
-        }
-        }
-        cur.close();
+	        for(int i = 0; i < item.length; i++)
+	        {
+	        	sb.append(item[i].ItemID + " " +
+	        			  item[i].UPC + " " +
+	        			  item[i].ItemName + " " +
+	        			  item[i].Created + " " +
+	        			  item[i].CreatorID + " " +
+	        			  item[i].Modified + " " +
+	        			  item[i].ModifierID + " " +
+	        			  item[i].ItemImage + "|");
+	        }
         } catch (Exception e) {
-   		  sb.append(e.toString() + "\n"); 		  
-   	   	}
+		  sb.append(e.toString() + "\n"); 		  
+	   	}
         
         sb.append("\n" + "ServiceProviders" + "\n");
         try
         {
-        cur = dh.getAllServiceProviders();
-        if (cur != null)
-        {
-        cur.moveToFirst();
-        while (cur.isAfterLast() == false) {
-            sb.append(cur.getString(1) + "\n");
-            cur.moveToNext();
-        }
-        }
-        cur.close();
+	        for(int i = 0; i < sp.length; i++)
+	        {
+	        	sb.append(sp[i].SvcProviderID + " " + 
+	        			  sp[i].SvcID + " " +
+	        			  sp[i].SvcProvider + " " +
+	        			  sp[i].URL + " " +
+	        			  sp[i].WebSvcName + "|");
+	        }
         } catch (Exception e) {
-   		  sb.append(e.toString() + "\n"); 		  
-   	   	}
+		  sb.append(e.toString() + "\n"); 		  
+	   	}
         
-        sb.append("\n" + "ItemKey" + "\n");
+        sb.append("\n" + "ItemServiceKey" + "\n");
         try
         {
-        cur = dh.getAllItemKey();
-        if (cur != null)
-        {
-        cur.moveToFirst();
-        while (cur.isAfterLast() == false) {
-            sb.append(cur.getString(1) + "\n");
-            cur.moveToNext();
-        }
-        }
-        cur.close();
+	        for(int i = 0; i < ik.length; i++)
+	        {
+	        	sb.append(ik[i].ItemID + " " + 
+	        			  ik[i].ServiceKeyID + " " +
+	        			  ik[i].Value + "|");
+	        }
         } catch (Exception e) {
-   		  sb.append(e.toString() + "\n"); 		  
-   	   	}
+		  sb.append(e.toString() + "\n"); 		  
+	   	}
+        
+        sb.append("\n" + "ServiceKey" + "\n");
+        try
+        {
+	        for(int i = 0; i < sk.length; i++)
+	        {
+	        	sb.append(sk[i].ServiceKeyID + " " + 
+	        			  sk[i].ServiceID + " " +
+	        			  sk[i].KeyID + "|");
+	        }
+        } catch (Exception e) {
+		  sb.append(e.toString() + "\n"); 		  
+	   	}
         
         sb.append("\n" + "Keys" + "\n");
         try
         {
-        cur = dh.getAllKeys();
-        if (cur != null)
-        {
-        cur.moveToFirst();
-        while (cur.isAfterLast() == false) {
-            sb.append(cur.getString(1) + "\n");
-            cur.moveToNext();
-        }
-        }
-        cur.close();
+	        for(int i = 0; i < k.length; i++)
+	        {
+	        	sb.append(k[i].KeyID + " " + 
+	        			  k[i].KeyName + "|");
+	        }
         } catch (Exception e) {
-   		  sb.append(e.toString() + "\n"); 		  
-   	   	}
+		  sb.append(e.toString() + "\n"); 		  
+	   	}
         
         this.output.setText(sb.toString());
         

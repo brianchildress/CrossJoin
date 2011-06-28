@@ -34,9 +34,12 @@ public class DataHelper {
     public static final String SERVICEPROVIDER_KEY_PROVIDER = "SvcProviderName";
     public static final String SERVICEPROVIDER_KEY_URL = "URL";
     public static final String SERVICEPROVIDER_KEY_WEBSVC = "WebSvcName";
-    public static final String ITEMKEY_KEY_ITEMID = "ItemID";
-    public static final String ITEMKEY_KEY_KEYID = "KeyID";
-    public static final String ITEMKEY_KEY_VALUE = "Value";
+    public static final String ITEMSERVICEKEY_KEY_ITEMID = "ItemID";
+    public static final String ITEMSERVICEKEY_KEY_SERVICEKEYID = "ServiceKeyID";
+    public static final String ITEMSERVICEKEY_KEY_VALUE = "Value";
+    public static final String SERVICEKEY_KEY_SERVICEKEYID = "ServiceKeyID";
+    public static final String SERVICEKEY_KEY_SERVICEID = "ServiceID";    
+    public static final String SERVICEKEY_KEY_KEYID = "KeyID";
     public static final String KEYS_KEY_ROWID = "KeyID";
     public static final String KEYS_KEY_NAME = "KeyName";
     
@@ -48,7 +51,8 @@ public class DataHelper {
     private static final String DATABASE_TABLE_USERSERVICE = "UserService";
     private static final String DATABASE_TABLE_ITEM = "Item";
     private static final String DATABASE_TABLE_SERVICEPROVIDER = "ServiceProvider";
-    private static final String DATABASE_TABLE_ITEMKEY = "ItemKey";
+    private static final String DATABASE_TABLE_ITEMSERVICEKEY = "ItemServiceKey";
+    private static final String DATABASE_TABLE_SERVICEKEY = "ServiceKey";
     private static final String DATABASE_TABLE_KEYS = "Keys";
     private static final int DATABASE_VERSION = 1;
 
@@ -68,7 +72,27 @@ public class DataHelper {
           insertService("Vinyl", 1);
           insertUser("jj@crossjoinconuslting.com", "JJ", "Jenkins", "pwd");
           insertUser("brian.p.childress@crossjoinconuslting.com", "Brian", "Childress", "pwd");
-      }
+          insertUserService(1, 2);
+          insertItem("0-345-38852-6", "Do we need an item name?", "06/27/2011", 2, "06/27/2011", 2, "");
+          insertKey("Author");
+          insertKey("Title");
+          insertKey("Type");
+          insertKey("Publisher");
+          insertKey("PublishedDate");
+          insertKey("Language");
+          insertServiceKey(1, 1);
+          insertServiceKey(1, 2);
+          insertServiceKey(1, 3);
+          insertServiceKey(1, 4);
+          insertServiceKey(1, 5);
+          insertServiceKey(1, 6);
+          insertItemServiceKey(1, "Harry Turtledove");
+          insertItemServiceKey(1, "WORLDWAR: IN THE BALANCE");
+          insertItemServiceKey(1, "Paperback");
+          insertItemServiceKey(1, "Ballantine Books");
+          insertItemServiceKey(1, "11/04/1997");
+          insertItemServiceKey(1, "English");
+          }
       
       this.close();
    }
@@ -171,6 +195,92 @@ public class DataHelper {
     		   SERVICE_KEY_ROWID + "=" + rowId, null) > 0;
    }
 
+ //---insert a service key into the database---
+   public long insertServiceKey(long serviceid, long keyid) 
+   {
+       ContentValues initialValues = new ContentValues();
+       initialValues.put(SERVICEKEY_KEY_KEYID, keyid);
+       initialValues.put(SERVICEKEY_KEY_SERVICEID, serviceid);
+       return db.insert(DATABASE_TABLE_SERVICEKEY, null, initialValues);
+   }
+   //---deletes a particular ServiceKey---
+   public boolean deleteServiceKey(long rowId) 
+   {
+       return db.delete(DATABASE_TABLE_SERVICEKEY, SERVICEKEY_KEY_SERVICEKEYID + "=" + rowId, null) > 0;
+   }
+ //---retrieves all the service keys---
+   private Cursor _getAllServiceKeys() 
+   {
+       return db.query(DATABASE_TABLE_SERVICEKEY, new String[] {
+    		   SERVICEKEY_KEY_SERVICEKEYID, 
+    		   SERVICEKEY_KEY_SERVICEID,
+    		   SERVICEKEY_KEY_KEYID}, 
+               null, 
+               null, 
+               null, 
+               null, 
+               null);
+   }
+   public Classes.ServiceKey[] getAllServiceKeys(long rowId)
+   {
+	   Classes c = new Classes();
+	   Classes.ServiceKey[] loServiceKey = null;
+	   Cursor cur;
+	   if (rowId == 0)
+		   cur = this._getAllServiceKeys();
+	   else
+		   cur = this._getServiceKey(rowId);
+	   try
+       {
+		   if (cur != null)
+		   {
+			   loServiceKey = new Classes.ServiceKey[cur.getCount()];
+			   cur.moveToFirst();
+			   Integer i = 0;
+			   while (cur.isAfterLast() == false) {
+				   Classes.ServiceKey k = c.new ServiceKey();
+				   k.ServiceKeyID = cur.getInt(0);
+				   k.ServiceID = cur.getInt(1);
+				   k.KeyID = cur.getInt(2);
+				   loServiceKey[i] = k;
+				   i += 1;
+				   cur.moveToNext();
+			   }
+		   }
+		   cur.close();		   
+       	} catch (Exception e) {}
+       	return loServiceKey;
+   }
+   //---retrieves a particular service key---
+   private Cursor _getServiceKey(long rowId) throws SQLException 
+   {
+       Cursor mCursor =
+               db.query(true, DATABASE_TABLE_SERVICEKEY, new String[] {
+            		   SERVICEKEY_KEY_SERVICEKEYID, 
+            		   SERVICEKEY_KEY_SERVICEID,
+            		   SERVICEKEY_KEY_KEYID},
+            		   SERVICEKEY_KEY_SERVICEKEYID + "=" + rowId, 
+               		null,
+               		null, 
+               		null, 
+               		null, 
+               		null);
+       if (mCursor != null) {
+           mCursor.moveToFirst();
+       }
+       return mCursor;
+   }
+ //---updates a service key---
+   public boolean updateServiceKey(long rowId, long serviceid, long keyid) 
+   {
+       ContentValues args = new ContentValues();
+       args.put(SERVICEKEY_KEY_SERVICEID, serviceid);
+       args.put(SERVICEKEY_KEY_KEYID, keyid);
+       return db.update(DATABASE_TABLE_SERVICEKEY, args, 
+    		   SERVICEKEY_KEY_SERVICEKEYID + "=" + rowId, null) > 0;
+   }
+   
+   
    //---insert a key into the database---
    public long insertKey(String name) 
    {
@@ -184,7 +294,7 @@ public class DataHelper {
        return db.delete(DATABASE_TABLE_KEYS, KEYS_KEY_ROWID + "=" + rowId, null) > 0;
    }
  //---retrieves all the keys---
-   public Cursor getAllKeys() 
+   private Cursor _getAllKeys() 
    {
        return db.query(DATABASE_TABLE_KEYS, new String[] {
     		   KEYS_KEY_ROWID, 
@@ -195,9 +305,37 @@ public class DataHelper {
                null, 
                null);
    }
-   
+   public Classes.Key[] getAllKeys(long rowId)
+   {
+	   Classes c = new Classes();
+	   Classes.Key[] loKey = null;
+	   Cursor cur;
+	   if (rowId == 0)
+		   cur = this._getAllKeys();
+	   else
+		   cur = this._getKey(rowId);
+	   try
+       {
+		   if (cur != null)
+		   {
+			   loKey = new Classes.Key[cur.getCount()];
+			   cur.moveToFirst();
+			   Integer i = 0;
+			   while (cur.isAfterLast() == false) {
+				   Classes.Key k = c.new Key();
+				   k.KeyID = cur.getInt(0);
+				   k.KeyName = cur.getString(1);
+				   loKey[i] = k;
+				   i += 1;
+				   cur.moveToNext();
+			   }
+		   }
+		   cur.close();		   
+       	} catch (Exception e) {}
+       	return loKey;
+   }
    //---retrieves a particular key---
-   public Cursor getKey(long rowId) throws SQLException 
+   private Cursor _getKey(long rowId) throws SQLException 
    {
        Cursor mCursor =
                db.query(true, DATABASE_TABLE_KEYS, new String[] {
@@ -223,40 +361,70 @@ public class DataHelper {
     		   KEYS_KEY_ROWID + "=" + rowId, null) > 0;
    }
    
-   //---insert an item key into the database---
-   public long insertItemKey(long KeyID, String value) 
+   //---insert an item service key into the database---
+   public long insertItemServiceKey(long ServiceKeyID, String value) 
    {
        ContentValues initialValues = new ContentValues();
-       initialValues.put(ITEMKEY_KEY_KEYID, KeyID);
-       initialValues.put(ITEMKEY_KEY_VALUE, value);
-       return db.insert(DATABASE_TABLE_ITEMKEY, null, initialValues);
+       initialValues.put(ITEMSERVICEKEY_KEY_SERVICEKEYID, ServiceKeyID);
+       initialValues.put(ITEMSERVICEKEY_KEY_VALUE, value);
+       return db.insert(DATABASE_TABLE_ITEMSERVICEKEY, null, initialValues);
    }
-   //---deletes a particular Service---
-   public boolean deleteItemKey(long rowId) 
+   //---deletes a particular item service key---
+   public boolean deleteItemServiceKey(long rowId) 
    {
-       return db.delete(DATABASE_TABLE_ITEMKEY, ITEMKEY_KEY_ITEMID + "=" + rowId, null) > 0;
+       return db.delete(DATABASE_TABLE_ITEMSERVICEKEY, ITEMSERVICEKEY_KEY_ITEMID + "=" + rowId, null) > 0;
    }
    //---retrieves all the services---
-   public Cursor getAllItemKey() 
+   private Cursor _getAllItemServiceKey() 
    {
-       return db.query(DATABASE_TABLE_ITEMKEY, new String[] {
-    		   ITEMKEY_KEY_ITEMID, 
-    		   ITEMKEY_KEY_KEYID,
-    		   ITEMKEY_KEY_VALUE}, 
+       return db.query(DATABASE_TABLE_ITEMSERVICEKEY, new String[] {
+    		   ITEMSERVICEKEY_KEY_ITEMID, 
+    		   ITEMSERVICEKEY_KEY_SERVICEKEYID,
+    		   ITEMSERVICEKEY_KEY_VALUE}, 
                null, 
                null, 
                null, 
                null, 
                null);
    }
+   public Classes.ItemServiceKey[] getAllItemServiceKey(long rowId)
+   {
+	   Classes c = new Classes();
+	   Classes.ItemServiceKey[] loItemKey = null;
+	   Cursor cur;
+	   if (rowId == 0)
+		   cur = this._getAllItemServiceKey();
+	   else
+		   cur = this._getItemServiceKey(rowId);
+	   try
+       {
+		   if (cur != null)
+		   {
+			   loItemKey = new Classes.ItemServiceKey[cur.getCount()];
+			   cur.moveToFirst();
+			   Integer i = 0;
+			   while (cur.isAfterLast() == false) {
+				   Classes.ItemServiceKey ik = c.new ItemServiceKey();
+				   ik.ItemID = cur.getInt(0);				   
+				   ik.ServiceKeyID = cur.getInt(1);
+				   ik.Value = cur.getString(2);
+				   loItemKey[i] = ik;
+				   i += 1;
+				   cur.moveToNext();
+			   }
+		   }
+		   cur.close();		   
+       	} catch (Exception e) {}
+       	return loItemKey;
+   }
    //---retrieves a particular item key---
-   public Cursor getItemKey(long rowId) throws SQLException 
+   private Cursor _getItemServiceKey(long rowId) throws SQLException 
    {
        Cursor mCursor =
-               db.query(true, DATABASE_TABLE_ITEMKEY, new String[] {
-            		   ITEMKEY_KEY_ITEMID, 
-            		   ITEMKEY_KEY_KEYID,
-            		   ITEMKEY_KEY_VALUE}, 
+               db.query(true, DATABASE_TABLE_ITEMSERVICEKEY, new String[] {
+            		   ITEMSERVICEKEY_KEY_ITEMID, 
+            		   ITEMSERVICEKEY_KEY_SERVICEKEYID,
+            		   ITEMSERVICEKEY_KEY_VALUE}, 
             		   SERVICE_KEY_ROWID + "=" + rowId, 
                		null,
                		null, 
@@ -269,13 +437,13 @@ public class DataHelper {
        return mCursor;
    }
    //---updates an item key---
-   public boolean updateItemKey(long rowId, long KeyID, String value) 
+   public boolean updateItemKey(long rowId, long ServiceKeyID, String value) 
    {
        ContentValues args = new ContentValues();
-       args.put(ITEMKEY_KEY_KEYID, KeyID);
-       args.put(ITEMKEY_KEY_VALUE, value);
-       return db.update(DATABASE_TABLE_ITEMKEY, args, 
-    		   ITEMKEY_KEY_ITEMID + "=" + rowId, null) > 0;
+       args.put(ITEMSERVICEKEY_KEY_SERVICEKEYID, ServiceKeyID);
+       args.put(ITEMSERVICEKEY_KEY_VALUE, value);
+       return db.update(DATABASE_TABLE_ITEMSERVICEKEY, args, 
+    		   ITEMSERVICEKEY_KEY_ITEMID + "=" + rowId, null) > 0;
    }
    
    //---insert a service provider into the database---
@@ -294,7 +462,7 @@ public class DataHelper {
        return db.delete(DATABASE_TABLE_SERVICEPROVIDER, SERVICEPROVIDER_KEY_ROWID + "=" + rowId, null) > 0;
    }
    //---retrieves all the service providers---
-   public Cursor getAllServiceProviders() 
+   private Cursor _getAllServiceProviders() 
    {
        return db.query(DATABASE_TABLE_SERVICEPROVIDER, new String[] {
     		   SERVICEPROVIDER_KEY_ROWID, 
@@ -308,8 +476,40 @@ public class DataHelper {
                null, 
                null);
    }
+   public Classes.ServiceProvider[] getAllServiceProviders(long rowId)
+   {
+	   Classes c = new Classes();
+	   Classes.ServiceProvider[] loServiceProvider = null;
+	   Cursor cur;
+	   if (rowId == 0)
+		   cur = this._getAllServiceProviders();
+	   else
+		   cur = this._getServiceProvider(rowId);
+	   try
+       {
+		   if (cur != null)
+		   {
+			   loServiceProvider = new Classes.ServiceProvider[cur.getCount()];
+			   cur.moveToFirst();
+			   Integer i = 0;
+			   while (cur.isAfterLast() == false) {
+				   Classes.ServiceProvider u = c.new ServiceProvider();
+				   u.SvcProviderID = cur.getInt(0);				   
+				   u.SvcID = cur.getInt(1);
+				   u.SvcProvider = cur.getString(2);
+				   u.URL = cur.getString(3);
+				   u.WebSvcName = cur.getString(4);
+				   loServiceProvider[i] = u;
+				   i += 1;
+				   cur.moveToNext();
+			   }
+		   }
+		   cur.close();		   
+       	} catch (Exception e) {}
+       	return loServiceProvider;
+   }
    //---retrieves a particular service provider---
-   public Cursor getServiceProvider(long rowId) throws SQLException 
+   private Cursor _getServiceProvider(long rowId) throws SQLException 
    {
        Cursor mCursor =
                db.query(true, DATABASE_TABLE_SERVICEPROVIDER, new String[] {
@@ -360,7 +560,7 @@ public class DataHelper {
        return db.delete(DATABASE_TABLE_ITEM, ITEM_KEY_ROWID + "=" + rowId, null) > 0;
    }
    //---retrieves all the items---
-   public Cursor getAllItem() 
+   private Cursor _getAllItem() 
    {
        return db.query(DATABASE_TABLE_ITEM, new String[] {
     		   ITEM_KEY_ROWID, 
@@ -377,8 +577,43 @@ public class DataHelper {
                null, 
                null);
    }  
+   public Classes.Item[] getAllItem(long rowId)
+   {
+	   Classes c = new Classes();
+	   Classes.Item[] loItem = null;
+	   Cursor cur;
+	   if (rowId == 0)
+		   cur = this._getAllItem();
+	   else
+		   cur = this._getItem(rowId);
+	   try
+       {
+		   if (cur != null)
+		   {
+			   loItem = new Classes.Item[cur.getCount()];
+			   cur.moveToFirst();
+			   Integer i = 0;
+			   while (cur.isAfterLast() == false) {
+				   Classes.Item item = c.new Item();
+				   item.ItemID = cur.getInt(0);				   
+				   item.UPC = cur.getString(1);
+				   item.ItemName = cur.getString(2);
+				   item.Created = cur.getString(3);				   
+				   item.CreatorID = cur.getString(4);
+				   item.Modified = cur.getString(5);
+				   item.ModifierID = cur.getString(6);
+				   item.ItemImage = cur.getString(7);
+				   loItem[i] = item;
+				   i += 1;
+				   cur.moveToNext();
+			   }
+		   }
+		   cur.close();		   
+       	} catch (Exception e) {}
+       	return loItem;
+   }
    //---retrieves a particular item---
-   public Cursor getItem(long rowId) throws SQLException 
+   private Cursor _getItem(long rowId) throws SQLException 
    {
        Cursor mCursor =
                db.query(true, DATABASE_TABLE_ITEM, new String[] {
@@ -618,7 +853,8 @@ public class DataHelper {
          db.execSQL("CREATE TABLE " + DATABASE_TABLE_USERSERVICE + "(UserSvcID INTEGER , SvcID INTEGER, UserID INTEGER)");
          db.execSQL("CREATE TABLE " + DATABASE_TABLE_ITEM + "(ItemID INTEGER PRIMARY KEY, UPC TEXT, ItemName TEXT, Created TEXT, CreatorID INTEGER, Modified TEXT, ModifierID INTEGER, ItemImage BLOB)");
          db.execSQL("CREATE TABLE " + DATABASE_TABLE_SERVICEPROVIDER + "(SvcProviderID INTEGER PRIMARY KEY, SvcID INTEGER, SvcProviderName TEXT, URL TEXT, WebSvcName TEXT)");
-         db.execSQL("CREATE TABLE " + DATABASE_TABLE_ITEMKEY + "(ItemID INTEGER, KeyID INTEGER, Value TEXT)");
+         db.execSQL("CREATE TABLE " + DATABASE_TABLE_ITEMSERVICEKEY + "(ItemID INTEGER, ServiceKeyID INTEGER, Value TEXT)");
+         db.execSQL("CREATE TABLE " + DATABASE_TABLE_SERVICEKEY + "(ServiceKeyID INTEGER, KeyID INTEGER, ServiceID TEXT)");
          db.execSQL("CREATE TABLE " + DATABASE_TABLE_KEYS + "(KeyID INTEGER PRIMARY KEY, KeyName TEXT)");
       }
 
@@ -632,7 +868,8 @@ public class DataHelper {
          db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_USERSERVICE);
          db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_ITEM);
          db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_SERVICEPROVIDER);
-         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_ITEMKEY);
+         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_ITEMSERVICEKEY);
+         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_SERVICEKEY);
          db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_KEYS);
          onCreate(db);
       }
