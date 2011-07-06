@@ -804,6 +804,33 @@ public class DataHelper {
        	} catch (Exception e) {}
        	return loUser;
    }
+   public Classes.User getUser(String UserName)
+   {
+	   Classes c = new Classes();
+	   Classes.User user = null;
+	   Cursor cur = this._getUser(UserName);
+	   try
+       {
+		   if (cur != null)
+		   {
+			   cur.moveToFirst();
+			   Integer i = 0;
+			   while (cur.isAfterLast() == false) {
+				   Classes.User u = c.new User();
+				   u.UserID = cur.getInt(0);				   
+				   u.UserName = cur.getString(1);
+				   u.FirstName = cur.getString(2);
+				   u.LastName = cur.getString(3);
+				   u.Password = SimpleCrypto.decrypt("LemurCJC", cur.getString(4));
+				   user = u;
+				   i += 1;
+				   cur.moveToNext();
+			   }
+		   }
+		   cur.close();		   
+       	} catch (Exception e) {}
+       	return user;
+   }
    //---retrieves a particular user---
    private Cursor _getUser(long rowId) throws SQLException 
    {
@@ -815,6 +842,25 @@ public class DataHelper {
 			   USER_KEY_PWD}, 
     		   SERVICE_KEY_ROWID + "=" + rowId, 
        		null,
+       		null, 
+       		null, 
+       		null, 
+       		null);
+	   if (mCursor != null) {
+		   mCursor.moveToFirst();
+	   }
+       return mCursor;
+   }
+   private Cursor _getUser(String UserName) throws SQLException 
+   {
+	   Cursor mCursor = db.query(true, DATABASE_TABLE_USER, new String[] {
+			   USER_KEY_ROWID, 
+			   USER_KEY_NAME,
+			   USER_KEY_FIRSTNAME,
+			   USER_KEY_LASTNAME,
+			   USER_KEY_PWD}, 
+			   USER_KEY_NAME + "=" + "?", 
+       		new String[]{UserName},
        		null, 
        		null, 
        		null, 

@@ -1,26 +1,33 @@
 package com.crossjoinconsulting.lemur;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
 import android.widget.TextView;
 
-public class LemurCollectionsActivity extends Activity 
+public class LemurCollectionsActivity extends Activity implements OnClickListener 
 {
 	private TextView output;
 	private DataHelper dh;
+	private Button btnLogin;
 	
-    /** Called when the activity is first created. */
+	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        this.btnLogin = (Button)this.findViewById(R.id.btnSubmit);
+        this.btnLogin.setOnClickListener(this);
         
         GridView gridview = (GridView) findViewById(R.id.gvImages);
         gridview.setAdapter(new ImageAdapter(this));
@@ -164,4 +171,14 @@ public class LemurCollectionsActivity extends Activity
         
         dh.close();
     }
+    
+    // Implement the OnClickListener callback
+    public void onClick(View v) {
+    	// do something when the button is clicked
+    	Intent intent = new Intent(LemurCollectionsActivity.this,LoginActivity.class);
+
+    	//Start next activity
+    	LemurCollectionsActivity.this.startActivity(intent); 
+    }
+	
 }
