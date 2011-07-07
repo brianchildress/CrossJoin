@@ -1,0 +1,2 @@
+INDEX VERSION 1.126+/home/bpc/Development/git/.metadata/.plugins/org.eclipse.jdt.core
+3013143699.index
