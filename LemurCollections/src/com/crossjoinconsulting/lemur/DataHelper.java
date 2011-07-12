@@ -70,8 +70,8 @@ public class DataHelper {
           insertService("Books", 0);
           insertService("DVDs", 0);
           insertService("Vinyl", 1);
-          insertUser("jj@crossjoinconuslting.com", "JJ", "Jenkins", "pwd");
-          insertUser("brian.p.childress@crossjoinconuslting.com", "Brian", "Childress", "pwd");
+          insertUser("jj@crossjoinconsulting.com", "JJ", "Jenkins", "pwd");
+          insertUser("brian.p.childress@crossjoinconsulting.com", "Brian", "Childress", "pwd");
           insertUserService(1, 2);
           insertItem("0-345-38852-6", "Do we need an item name?", "06/27/2011", 2, "06/27/2011", 2, "");
           insertKey("Author");
@@ -806,30 +806,11 @@ public class DataHelper {
    }
    public Classes.User getUser(String UserName)
    {
-	   Classes c = new Classes();
-	   Classes.User user = null;
-	   Cursor cur = this._getUser(UserName);
-	   try
-       {
-		   if (cur != null)
-		   {
-			   cur.moveToFirst();
-			   Integer i = 0;
-			   while (cur.isAfterLast() == false) {
-				   Classes.User u = c.new User();
-				   u.UserID = cur.getInt(0);				   
-				   u.UserName = cur.getString(1);
-				   u.FirstName = cur.getString(2);
-				   u.LastName = cur.getString(3);
-				   u.Password = SimpleCrypto.decrypt("LemurCJC", cur.getString(4));
-				   user = u;
-				   i += 1;
-				   cur.moveToNext();
-			   }
-		   }
-		   cur.close();		   
-       	} catch (Exception e) {}
-       	return user;
+	   for (Classes.User u : getAllUsers(0)){
+		   if (u.UserName.equals(UserName))
+			   return u;
+	   }
+	   return null;
    }
    //---retrieves a particular user---
    private Cursor _getUser(long rowId) throws SQLException 
@@ -851,25 +832,7 @@ public class DataHelper {
 	   }
        return mCursor;
    }
-   private Cursor _getUser(String UserName) throws SQLException 
-   {
-	   Cursor mCursor = db.query(true, DATABASE_TABLE_USER, new String[] {
-			   USER_KEY_ROWID, 
-			   USER_KEY_NAME,
-			   USER_KEY_FIRSTNAME,
-			   USER_KEY_LASTNAME,
-			   USER_KEY_PWD}, 
-			   USER_KEY_NAME + "=" + "?", 
-       		new String[]{UserName},
-       		null, 
-       		null, 
-       		null, 
-       		null);
-	   if (mCursor != null) {
-		   mCursor.moveToFirst();
-	   }
-       return mCursor;
-   }
+   
    //---updates a user---
    public boolean updateUser(long rowId, String username, String firstname, String lastname, String password) 
    {

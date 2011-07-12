@@ -30,32 +30,48 @@ public class LoginActivity extends Activity implements OnClickListener
     
 	// Implement the OnClickListener callback
     public void onClick(View v) {
-    	// do something when the button is clicked
-    	this.dh = new DataHelper(this);
-        dh.open();
-        
-        this.etEmail = (EditText)this.findViewById(R.id.etEmail);
-        this.etPassword = (EditText)this.findViewById(R.id.etPassword);
-        
-        Classes.User u = dh.getUser(etEmail.getText().toString());
-    	
-        if (u.UserName == etPassword.getText().toString())
+    	this.tvError = (TextView)this.findViewById(R.id.tvError);
+    	try
         {
-	    	Intent intent = new Intent(LoginActivity.this,LemurCollectionsActivity.class);
-	
-	    	//Next create the bundle and initialize it
-	    	Bundle bundle = new Bundle();
-	    	//Add the parameters to bundle as 
-	    	bundle.putString("USERNAME", etEmail.toString());
-	    	//Add this bundle to the intent
-	    	intent.putExtras(bundle);
+	    	// do something when the button is clicked
+	    	this.dh = new DataHelper(this);
+	        dh.open();
+	        
+	        this.etEmail = (EditText)this.findViewById(R.id.etEmail);
+	        this.etPassword = (EditText)this.findViewById(R.id.etPassword);
+	        
+	        Classes.User u = dh.getUser(etEmail.getText().toString());
 	    	
-	    	//Start next activity
-	    	LoginActivity.this.startActivity(intent); 
-        }
-        else
-        {
+	        if (u != null && u.Password.equals(etPassword.getText().toString()))
+	        {
+	        	try
+	            {
+	        		dh.close();
+			    	Intent intent = new Intent(LoginActivity.this,UserMainActivity.class);
+			
+			    	//Next create the bundle and initialize it
+			    	Bundle bundle = new Bundle();
+			    	//Add the parameters to bundle as 
+			    	bundle.putString("USERNAME", etEmail.getText().toString());
+			    	//Add this bundle to the intent
+			    	intent.putExtras(bundle);
+			    	
+			    	//Start next activity
+			    	LoginActivity.this.startActivity(intent); 
+	            } catch (Exception e) {
+	            	tvError.setVisibility(0);
+	            	tvError.setText(e.toString());
+	      	   	}
+	        }
+	        else
+	        {
+	        	tvError.setVisibility(0);
+	        	dh.close();
+	        }  
+        } catch (Exception e) {
         	tvError.setVisibility(0);
-        }    	
+        	tvError.setText(e.toString());
+        	dh.close();
+  	   	}
     }
 }
