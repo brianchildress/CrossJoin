@@ -9,5 +9,6 @@
     <TextView android:layout_height="wrap_content" android:text="Firstname Lastname" android:id="@+id/tvUserName" 
     		  android:layout_width="wrap_content" android:layout_toRightOf="@id/tvWelcome"  
     		  android:layout_marginLeft="2px" android:layout_marginTop="15px" />
-    
+    <Button android:layout_height="wrap_content" android:id="@+id/btnSubmit" android:text="Submit" 
+    		android:layout_gravity="right" android:layout_width="wrap_content" />
 </RelativeLayout>
