@@ -1,38 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="15" version="2.0">
+<workbench progressCount="16" version="2.0">
 <workbenchAdvisor/>
-<window height="744" width="1024" x="66" y="24">
-<fastViewData fastViewLocation="1024"/>
+<window height="745" maximized="true" width="1020" x="0" y="24">
+<fastViewData fastViewLocation="1024">
+<orientation position="512" view="org.eclipse.debug.ui.VariableView"/>
+</fastViewData>
 <perspectiveBar>
-<itemSize x="160"/>
+<itemSize x="190"/>
 </perspectiveBar>
 <coolbarLayout>
 <coolItem id="group.file" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="132" y="30"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="adt.actionSet.avdManager" itemType="typeToolBarContribution" x="40" y="30"/>
+<coolItem id="adt.actionSet.wizards" itemType="typeToolBarContribution" x="96" y="30"/>
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="120" y="30"/>
 <coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="76" y="30"/>
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="76" y="30"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="124" y="30"/>
+<coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="184" y="30"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
-<page aggregateWorkingSetId="Aggregate for window 1309997912170" focus="true" label="Workspace - Java">
+<page aggregateWorkingSetId="Aggregate for window 1309997912170" focus="true" label="Workspace - Debug">
 <editors>
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+</presentation>
 </folder>
 </info>
 </editorArea>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LoginActivity.java" partName="LoginActivity.java" path="/home/bpc/Development/git/LemurCollections/src/com/crossjoinconsulting/lemur/LoginActivity.java" title="LoginActivity.java" tooltip="LemurCollections/src/com/crossjoinconsulting/lemur/LoginActivity.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/LemurCollections/src/com/crossjoinconsulting/lemur/LoginActivity.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1268" selectionTopPixel="447"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DataHelper.java" partName="DataHelper.java" path="/home/bpc/Development/git/LemurCollections/src/com/crossjoinconsulting/lemur/DataHelper.java" title="DataHelper.java" tooltip="LemurCollections/src/com/crossjoinconsulting/lemur/DataHelper.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/LemurCollections/src/com/crossjoinconsulting/lemur/DataHelper.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3225" selectionTopPixel="1158"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UserMainActivity.java" partName="UserMainActivity.java" path="/home/bpc/Development/git/LemurCollections/src/com/crossjoinconsulting/lemur/UserMainActivity.java" title="UserMainActivity.java" tooltip="LemurCollections/src/com/crossjoinconsulting/lemur/UserMainActivity.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/LemurCollections/src/com/crossjoinconsulting/lemur/UserMainActivity.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1313" selectionTopPixel="454"/>
+</editor>
 </editors>
 <views>
+<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks"/>
+<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
+<viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
+</view>
+<view id="org.eclipse.debug.ui.ExpressionView" partName="Expressions">
+<viewState/>
+</view>
+<view id="com.android.ide.eclipse.ddms.views.LogCatView" partName="LogCat">
+<viewState/>
+</view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="105" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
+<expanded>
+<category IMemento.internal.id="Warnings (100 of 219 items)"/>
+</expanded>
+<columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="397" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
@@ -69,13 +116,13 @@
 </customFilters>
 </viewState>
 </view>
-<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
 </view>
 <view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.debug.ui.DebugView" activePerspective="org.eclipse.debug.ui.DebugPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -93,6 +140,9 @@
 <alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
 <alwaysOnActionSet id="org.eclipse.jdt.debug.ui.JDTDebugActionSet"/>
 <alwaysOnActionSet id="org.eclipse.jdt.junit.JUnitActionSet"/>
+<alwaysOnActionSet id="adt.actionSet.wizards"/>
+<alwaysOnActionSet id="adt.actionSet.refactorings"/>
+<alwaysOnActionSet id="adt.actionSet.avdManager"/>
 <show_view_action id="org.eclipse.jdt.ui.PackageExplorer"/>
 <show_view_action id="org.eclipse.jdt.ui.TypeHierarchy"/>
 <show_view_action id="org.eclipse.jdt.ui.SourceView"/>
@@ -129,7 +179,7 @@
 <view id="org.eclipse.ui.views.ProblemView"/>
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
-<view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -155,14 +205,110 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.24950495" ratioLeft="252" ratioRight="758" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.7495935" ratioLeft="461" ratioRight="154" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
 <page content="org.eclipse.jdt.ui.SourceView" label="Declaration"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
-<page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="right" ratio="0.74934036" ratioLeft="568" ratioRight="190" relationship="2" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
+<page content="org.eclipse.ui.texteditor.TemplatesView" label="LabelNotFound"/>
+<page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.eclipse.debug.internal.ui.DebugPerspectiveFactory" id="org.eclipse.debug.ui.DebugPerspective" label="Debug"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="adt.actionSet.wizards"/>
+<alwaysOnActionSet id="adt.actionSet.refactorings"/>
+<alwaysOnActionSet id="adt.actionSet.avdManager"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.debug.ui.JDTDebugActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.ui.JavaActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<show_view_action id="org.eclipse.debug.ui.DebugView"/>
+<show_view_action id="org.eclipse.debug.ui.VariableView"/>
+<show_view_action id="org.eclipse.debug.ui.BreakpointView"/>
+<show_view_action id="org.eclipse.debug.ui.ExpressionView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="com.android.ide.eclipse.ddms.views.LogCatView"/>
+<show_view_action id="com.android.ide.eclipse.ddms.views.DeviceView"/>
+<show_view_action id="org.eclipse.ant.ui.views.AntView"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<show_view_action id="org.eclipse.jdt.debug.ui.DisplayView"/>
+<perspective_action id="com.android.ide.eclipse.ddms.Perspective"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaPerspective"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaBrowsingPerspective"/>
+<perspective_action id="org.eclipse.wst.xml.ui.perspective"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.debug.ui.DebugView"/>
+<view id="org.eclipse.debug.ui.BreakpointView"/>
+<view id="org.eclipse.debug.ui.ExpressionView"/>
+<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="com.android.ide.eclipse.ddms.views.LogCatView"/>
+<fastViews>
+<view id="org.eclipse.debug.ui.VariableView" ratio="0.3"/>
+</fastViews>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.PackageExplorer" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.63338536" ratioLeft="406" ratioRight="235" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="com.android.ide.eclipse.ddms.views.LogCatView" label="LogCat"/>
+<page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.debug.ui.DisplayView" label="LabelNotFound"/>
+<page content="org.eclipse.search.SearchResultView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
@@ -170,13 +316,31 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="right" ratio="0.74934036" ratioLeft="568" ratioRight="190" relationship="2" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
-<page content="org.eclipse.ui.texteditor.TemplatesView" label="LabelNotFound"/>
+<info part="org.eclipse.ui.editorss" ratio="0.26687598" ratioLeft="170" ratioRight="467" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@756c05c" ratio="0.76457566" ratioLeft="1036" ratioRight="319" relationship="2" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">
+<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="679" ratioRight="679" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder activePageID="org.eclipse.debug.ui.ExpressionView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
+<page content="org.eclipse.debug.ui.ExpressionView" label="Expressions"/>
+<page content="org.eclipse.debug.ui.VariableView" label="LabelNotFound"/>
+<page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
 </presentation>
 </folder>
 </info>
@@ -185,7 +349,168 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/LemurCollections/src/com/crossjoinconsulting/lemur/DataHelper.java"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=LemurCollections/\/home\/bpc\/Development\/android-sdk-linux_x86\/platforms\/android-7\/android.jar&lt;android.database(AbstractCursor.class"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=LemurCollections/\/home\/bpc\/Development\/android-sdk-linux_x86\/platforms\/android-7\/android.jar&lt;java.lang(Integer.class"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=LemurCollections/\/home\/bpc\/Development\/android-sdk-linux_x86\/platforms\/android-7\/android.jar&lt;android.database(AbstractWindowedCursor.class"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/LemurCollections/src/com/crossjoinconsulting/lemur/SimpleCrypto.java"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=LemurCollections/\/home\/bpc\/Development\/android-sdk-linux_x86\/platforms\/android-7\/android.jar&lt;java.lang(String.class"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/LemurCollections/src/com/crossjoinconsulting/lemur/LoginActivity.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/LemurCollections/src/com/crossjoinconsulting/lemur/UserMainActivity.java"/>
+</editors>
+<item historyLabel="DataHelper.java" index="0">
+<position/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position/>
+</item>
+<item historyLabel="AbstractWindowedCursor.class" index="3">
+<position/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position/>
+</item>
+<item historyLabel="AbstractWindowedCursor.class" index="3">
+<position/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position/>
+</item>
+<item historyLabel="AbstractWindowedCursor.class" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position/>
+</item>
+<item historyLabel="SimpleCrypto.java" index="4">
+<position info="not_deleted" x="735" y="0"/>
+</item>
+<item historyLabel="String.class" index="5">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="SimpleCrypto.java" index="4">
+<position info="not_deleted" x="735" y="0"/>
+</item>
+<item historyLabel="SimpleCrypto.java" index="4">
+<position info="not_deleted" x="953" y="0"/>
+</item>
+<item historyLabel="SimpleCrypto.java" index="4">
+<position info="not_deleted" x="735" y="0"/>
+</item>
+<item historyLabel="SimpleCrypto.java" index="4">
+<position info="not_deleted" x="781" y="0"/>
+</item>
+<item historyLabel="SimpleCrypto.java" index="4">
+<position info="not_deleted" x="2075" y="0"/>
+</item>
+<item historyLabel="SimpleCrypto.java" index="4">
+<position info="not_deleted" x="781" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position/>
+</item>
+<item historyLabel="Integer.class" index="2">
+<position/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position/>
+</item>
+<item historyLabel="Integer.class" index="2">
+<position/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position/>
+</item>
+<item historyLabel="Integer.class" index="2">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27070" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27085" y="0"/>
+</item>
+<item historyLabel="AbstractCursor.class" index="1">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27085" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="26740" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27262" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27305" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27262" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27305" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27262" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27298" y="0"/>
+</item>
+<item historyLabel="LoginActivity.java" index="6">
+<position info="not_deleted" x="1268" y="0"/>
+</item>
+<item historyLabel="LoginActivity.java" index="6">
+<position info="not_deleted" x="1343" y="0"/>
+</item>
+<item historyLabel="LoginActivity.java" index="6">
+<position info="not_deleted" x="1268" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27298" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27262" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="26424" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27262" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27305" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27304" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27262" y="0"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="27314" y="27"/>
+</item>
+<item historyLabel="DataHelper.java" index="0">
+<position info="not_deleted" x="3225" y="0"/>
+</item>
+<item active="true" historyLabel="UserMainActivity.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+</navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -198,9 +523,49 @@
 <trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
-<trimItem IMemento.internal.id="org.eclipse.ui.internal.intro.impl.presentations.IntroLaunchBar"/>
+<trimItem IMemento.internal.id="org.eclipse.debug.internal.ui.ConsoleFolderView"/>
 </trimArea>
 </trimLayout>
 </window>
-<mruList/>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UserMainActivity.java" tooltip="LemurCollections/src/com/crossjoinconsulting/lemur/UserMainActivity.java">
+<persistable path="/LemurCollections/src/com/crossjoinconsulting/lemur/UserMainActivity.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DataHelper.java" tooltip="LemurCollections/src/com/crossjoinconsulting/lemur/DataHelper.java">
+<persistable path="/LemurCollections/src/com/crossjoinconsulting/lemur/DataHelper.java"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="AbstractCursor.class" tooltip="android.database.AbstractCursor">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=LemurCollections/\/home\/bpc\/Development\/android-sdk-linux_x86\/platforms\/android-7\/android.jar&lt;android.database(AbstractCursor.class"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Integer.class" tooltip="java.lang.Integer">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=LemurCollections/\/home\/bpc\/Development\/android-sdk-linux_x86\/platforms\/android-7\/android.jar&lt;java.lang(Integer.class"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SimpleCrypto.java" tooltip="LemurCollections/src/com/crossjoinconsulting/lemur/SimpleCrypto.java">
+<persistable path="/LemurCollections/src/com/crossjoinconsulting/lemur/SimpleCrypto.java"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="String.class" tooltip="java.lang.String">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=LemurCollections/\/home\/bpc\/Development\/android-sdk-linux_x86\/platforms\/android-7\/android.jar&lt;java.lang(String.class"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="AbstractWindowedCursor.class" tooltip="android.database.AbstractWindowedCursor">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=LemurCollections/\/home\/bpc\/Development\/android-sdk-linux_x86\/platforms\/android-7\/android.jar&lt;android.database(AbstractWindowedCursor.class"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="SQLiteCursor.class" tooltip="android.database.sqlite.SQLiteCursor">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=LemurCollections/\/home\/bpc\/Development\/android-sdk-linux_x86\/platforms\/android-7\/android.jar&lt;android.database.sqlite(SQLiteCursor.class"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="SQLiteDatabase.class" tooltip="android.database.sqlite.SQLiteDatabase">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=LemurCollections/\/home\/bpc\/Development\/android-sdk-linux_x86\/platforms\/android-7\/android.jar&lt;android.database.sqlite(SQLiteDatabase.class"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Classes.java" tooltip="LemurCollections/src/com/crossjoinconsulting/lemur/Classes.java">
+<persistable path="/LemurCollections/src/com/crossjoinconsulting/lemur/Classes.java"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Object.class" tooltip="java.lang.Object">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=LemurCollections/\/home\/bpc\/Development\/android-sdk-linux_x86\/platforms\/android-7\/android.jar&lt;java.lang(Object.class"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="EditText.class" tooltip="android.widget.EditText">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=LemurCollections/\/home\/bpc\/Development\/android-sdk-linux_x86\/platforms\/android-7\/android.jar&lt;android.widget(EditText.class"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LoginActivity.java" tooltip="LemurCollections/src/com/crossjoinconsulting/lemur/LoginActivity.java">
+<persistable path="/LemurCollections/src/com/crossjoinconsulting/lemur/LoginActivity.java"/>
+</file>
+</mruList>
 </workbench>

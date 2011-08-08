@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent" android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
     <TextView android:id="@+id/tvWelcome" android:layout_width="wrap_content" android:text="Welcome"
     		  android:layout_height="wrap_content" android:layout_gravity="left" 
     		  android:layout_marginLeft="15px" android:layout_marginTop="15px" />
     <TextView android:layout_height="wrap_content" android:text="Firstname Lastname" android:id="@+id/tvUserName" 
     		  android:layout_width="wrap_content" android:layout_toRightOf="@id/tvWelcome"  
     		  android:layout_marginLeft="2px" android:layout_marginTop="15px" />
-    
-</RelativeLayout>
+    <Button android:layout_height="wrap_content" android:id="@+id/btnSubmit" android:text="Submit" 
+    		android:layout_gravity="right" android:layout_width="wrap_content" />
+    <TextView android:id="@+id/tvContents" android:layout_width="wrap_content" android:text="Contents"
+    		  android:layout_height="wrap_content" android:layout_gravity="left" 
+    		  android:layout_marginLeft="15px" android:layout_marginTop="15px" />
+   	<TextView android:id="@+id/tvFormat" android:layout_width="wrap_content" android:text="Contents"
+    		  android:layout_height="wrap_content" android:layout_gravity="left" 
+    		  android:layout_marginLeft="15px" android:layout_marginTop="15px" />
+</LinearLayout>
+
