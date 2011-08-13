@@ -31,51 +31,27 @@ public final class R {
     public static final class id {
         public static final int auto_focus=0x7f050000;
         public static final int benchmark_done=0x7f050001;
-        public static final int benchmark_help=0x7f050007;
-        public static final int benchmark_run=0x7f050006;
-        public static final int btnSubmit=0x7f05000f;
-        public static final int encode_bad_data=0x7f05001f;
-        public static final int encode_contact=0x7f05001d;
-        public static final int encode_email=0x7f05001a;
-        public static final int encode_location=0x7f05001e;
-        public static final int encode_phone=0x7f05001b;
-        public static final int encode_sms=0x7f05001c;
-        public static final int encode_url=0x7f050019;
-        public static final int etEmail=0x7f05000c;
-        public static final int etPassword=0x7f05000e;
-        public static final int get_camera_parameters=0x7f050014;
-        public static final int gvImages=0x7f050012;
-        public static final int out_text=0x7f050011;
-        public static final int preview_view=0x7f050008;
+        public static final int btnSubmit=0x7f05000a;
+        public static final int etEmail=0x7f050007;
+        public static final int etPassword=0x7f050009;
+        public static final int gvImages=0x7f05000d;
+        public static final int out_text=0x7f05000c;
         public static final int quit=0x7f050002;
-        public static final int run_benchmark=0x7f050021;
         public static final int save=0x7f050003;
         public static final int save_failed=0x7f050005;
         public static final int save_succeeded=0x7f050004;
-        public static final int scan_anything=0x7f050017;
-        public static final int scan_product=0x7f050015;
-        public static final int scan_qr_code=0x7f050016;
-        public static final int search_book_contents=0x7f050018;
-        public static final int share_via_barcode=0x7f050020;
-        public static final int status_text_view=0x7f050009;
-        public static final int take_test_photos=0x7f050013;
-        public static final int tvContents=0x7f050024;
-        public static final int tvEmail=0x7f05000b;
-        public static final int tvError=0x7f050010;
-        public static final int tvFormat=0x7f050025;
-        public static final int tvPwd=0x7f05000d;
-        public static final int tvUserName=0x7f050023;
-        public static final int tvWelcome=0x7f050022;
-        public static final int viewfinder_view=0x7f05000a;
+        public static final int tvContents=0x7f050010;
+        public static final int tvEmail=0x7f050006;
+        public static final int tvError=0x7f05000b;
+        public static final int tvFormat=0x7f050011;
+        public static final int tvPwd=0x7f050008;
+        public static final int tvUserName=0x7f05000f;
+        public static final int tvWelcome=0x7f05000e;
     }
     public static final class layout {
-        public static final int benchmark=0x7f030000;
-        public static final int camera_parameters=0x7f030001;
-        public static final int camera_test=0x7f030002;
-        public static final int login=0x7f030003;
-        public static final int main=0x7f030004;
-        public static final int test=0x7f030005;
-        public static final int usermain=0x7f030006;
+        public static final int login=0x7f030000;
+        public static final int main=0x7f030001;
+        public static final int usermain=0x7f030002;
     }
     public static final class string {
         /** 

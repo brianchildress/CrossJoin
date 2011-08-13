@@ -67,6 +67,7 @@ public class UserMainActivity extends Activity implements OnClickListener
             
             tvContents.setText(scanResult.getContents());
             tvFormat.setText(scanResult.getFormatName());
+            
 	    }
 	    // else continue with any other code you need in the method
 	 
