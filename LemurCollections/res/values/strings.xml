@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, LemurCollectionsActivity!</string>
-    <string name="app_name">LemurCollections</string>
+    <string name="hello">Welcome to Lemur Collections by !</string>
+    <string name="app_name">Lemur Collections</string>
+    <string name="company">CrossJoin Consulting, LLC</string>
     <!--
  Copyright (C) 2008 ZXing authors
 

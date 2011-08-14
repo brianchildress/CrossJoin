@@ -3,9 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="lib" path="/home/bpc/Development/gdata/java/lib/gdata-books-1.0.jar"/>
-	<classpathentry kind="lib" path="/home/bpc/Development/gdata/java/lib/gdata-client-1.0.jar"/>
-	<classpathentry kind="lib" path="/home/bpc/Development/gdata/java/lib/gdata-core-1.0.jar"/>
-	<classpathentry kind="lib" path="/home/bpc/Development/GDataSamples/gdata/java/sample/util/lib/sample-util.jar"/>
+	<classpathentry kind="lib" path="/home/bpc/Development/Google API/google-api-client-1.5.0-beta.jar"/>
+	<classpathentry kind="lib" path="/home/bpc/Development/Google API/google-api-client-extensions-1.5.0-beta.jar"/>
+	<classpathentry kind="lib" path="/home/bpc/Development/Google API/google-api-services-books-v1-1.0.0-beta.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
