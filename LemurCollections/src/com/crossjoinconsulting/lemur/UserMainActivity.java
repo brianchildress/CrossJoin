@@ -149,6 +149,7 @@ public class UserMainActivity extends Activity implements OnClickListener
     }
     
     //java.net.SocketException: Permission denied
+    //< uses-permission android:name="android.permission.INTERNET" />
     private void queryGoogleBooks(JsonFactory jsonFactory, String query) throws Exception {
         // Set up Books client.
         final Books books = new Books(new NetHttpTransport(), jsonFactory);
