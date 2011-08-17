@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;proguard.cfg&apos; to &apos;LemurCollections&apos;&#x0A;- Original project: &apos;Lemur&apos;&#x0A;- Destination element: &apos;LemurCollections&apos;&#x0A;- Original element: &apos;proguard.cfg&apos;" description="Copy file" destination="=LemurCollections" element1="proguard.cfg" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1313554857853" units="0" version="1.0"/>
+</session>

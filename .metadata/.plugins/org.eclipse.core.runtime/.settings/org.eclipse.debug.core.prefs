@@ -1,3 +1,3 @@
-#Sat Aug 06 19:07:02 EDT 2011
-prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n<expression enabled\="true" text\="contents"/>\n<expression enabled\="true" text\="formatName"/>\n<expression enabled\="true" text\="scanResult"/>\n<expression enabled\="true" text\="scanResult.formatName"/>\n</watchExpressions>\n
+#Wed Aug 17 01:35:08 EDT 2011
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n<expression enabled\="true" text\="t"/>\n</watchExpressions>\n
 eclipse.preferences.version=1

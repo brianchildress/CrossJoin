@@ -10,11 +10,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import com.google.api.client.googleapis.json.GoogleJsonError;
-import com.google.api.client.googleapis.json.GoogleJsonError.ErrorInfo;
+//import com.google.api.client.googleapis.json.GoogleJsonError;
+//import com.google.api.client.googleapis.json.GoogleJsonError.ErrorInfo;
 import com.google.api.client.http.HttpResponseException;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.Json;
+//import com.google.api.client.json.Json;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson.JacksonFactory;
 import com.google.api.services.books.v1.Books;
@@ -34,6 +34,7 @@ public class UserMainActivity extends Activity implements OnClickListener
 	private Button btnScan;
 	private TextView tvContents;
 	private TextView tvFormat;
+	private TextView tvTitle;
 	
 	private static final String API_KEY = "AIzaSyD6B91qHu4WtB54v2FtM1DRnCeqysaupSM";
 	
@@ -64,6 +65,8 @@ public class UserMainActivity extends Activity implements OnClickListener
 		
 		tvUserName.setText(u.FirstName + " " + u.LastName);
 		dh.close();
+		
+		query("0385729359");
     }
     
  // Implement the OnClickListener callback
@@ -104,7 +107,12 @@ public class UserMainActivity extends Activity implements OnClickListener
 	    {
 	    	
 	    }
-        try {
+        query(Contents);
+	 }
+    
+    private void query(String Contents)
+    {
+    	try {
         	JsonFactory jsonFactory = new JacksonFactory();
         	
           // Parse command line parameters into a query.
@@ -121,7 +129,9 @@ public class UserMainActivity extends Activity implements OnClickListener
             queryGoogleBooks(jsonFactory, query);
             // Success!
             return;
-          } catch (HttpResponseException e) {
+          } catch (HttpResponseException e) 
+          {
+        	  /*
             if (!Json.CONTENT_TYPE.equals(e.getResponse().getContentType())) {
               System.err.println(e.getResponse().parseAsString());
             } else {
@@ -129,14 +139,16 @@ public class UserMainActivity extends Activity implements OnClickListener
               System.err.println(errorResponse.code + " Error: " + errorResponse.message);
               for (ErrorInfo error : errorResponse.errors) {
                 System.err.println(jsonFactory.toString(error));
-              }
+              }              
             }
+            */
           }
         } catch (Throwable t) {
           t.printStackTrace();
         }	 
-	 }
+    }
     
+    //java.net.SocketException: Permission denied
     private void queryGoogleBooks(JsonFactory jsonFactory, String query) throws Exception {
         // Set up Books client.
         final Books books = new Books(new NetHttpTransport(), jsonFactory);
@@ -162,6 +174,8 @@ public class UserMainActivity extends Activity implements OnClickListener
           System.out.println("==========");
           // Title.
           System.out.println("Title: " + volumeInfo.title);
+          this.tvTitle = (TextView)this.findViewById(R.id.tvTitle);
+          tvTitle.setText(volumeInfo.title);
           // Author(s).
           java.util.List<String> authors = volumeInfo.authors;
           if (authors != null && !authors.isEmpty()) {

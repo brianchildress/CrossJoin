@@ -1,3 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="org.eclipse.jdt.debug.ui.MAIN_METHOD_SELECTION_DIALOG">
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;History&gt;&#x0A;&lt;historyRootNode&gt;&#x0A;&lt;infoNode&gt;=prediction-json-clientlogin-sample/src&amp;lt;com.google.api.client.sample.prediction{PredictionSample.java[PredictionSample&lt;/infoNode&gt;&#x0A;&lt;infoNode&gt;=moderator-json-oauth-sample/src&amp;lt;com.google.api.client.sample.moderator{ModeratorSample.java[ModeratorSample&lt;/infoNode&gt;&#x0A;&lt;infoNode&gt;=buzz-v1-json-oauth2-cmdline-sample/src\/main\/java&amp;lt;com.google.api.client.sample.buzz.cmdline{BuzzSample.java[BuzzSample&lt;/infoNode&gt;&#x0A;&lt;/historyRootNode&gt;&#x0A;&lt;/History&gt;" key="History"/>
+		<section name="DialogBoundsSettings">
+			<item value="600" key="DIALOG_WIDTH"/>
+			<item value="54" key="DIALOG_Y_ORIGIN"/>
+			<item value="419" key="DIALOG_X_ORIGIN"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
+			<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		</section>
+	</section>
+	<section name="conditionHistory">
+	</section>
 </section>

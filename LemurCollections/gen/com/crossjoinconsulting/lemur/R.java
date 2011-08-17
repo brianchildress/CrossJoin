@@ -32,6 +32,7 @@ public final class R {
         public static final int tvError=0x7f050005;
         public static final int tvFormat=0x7f05000b;
         public static final int tvPwd=0x7f050002;
+        public static final int tvTitle=0x7f05000c;
         public static final int tvUserName=0x7f050009;
         public static final int tvWelcome=0x7f050008;
     }
