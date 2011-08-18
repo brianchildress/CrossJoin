@@ -12,9 +12,12 @@ import android.widget.Button;
 import android.widget.TextView;
 //import com.google.api.client.googleapis.json.GoogleJsonError;
 //import com.google.api.client.googleapis.json.GoogleJsonError.ErrorInfo;
+import com.google.api.client.googleapis.json.GoogleJsonError;
+import com.google.api.client.googleapis.json.GoogleJsonError.ErrorInfo;
 import com.google.api.client.http.HttpResponseException;
 import com.google.api.client.http.javanet.NetHttpTransport;
 //import com.google.api.client.json.Json;
+import com.google.api.client.json.Json;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson.JacksonFactory;
 import com.google.api.services.books.v1.Books;
@@ -131,40 +134,39 @@ public class UserMainActivity extends Activity implements OnClickListener
             return;
           } catch (HttpResponseException e) 
           {
-        	  /*
-            if (!Json.CONTENT_TYPE.equals(e.getResponse().getContentType())) {
-              System.err.println(e.getResponse().parseAsString());
+        	
+            if (!Json.CONTENT_TYPE.equals(e.response.contentType)) {
+              System.err.println(e.response.parseAsString());
             } else {
-              GoogleJsonError errorResponse = GoogleJsonError.parse(jsonFactory, e.getResponse());
+              GoogleJsonError errorResponse = GoogleJsonError.parse(jsonFactory, e.response);
               System.err.println(errorResponse.code + " Error: " + errorResponse.message);
               for (ErrorInfo error : errorResponse.errors) {
                 System.err.println(jsonFactory.toString(error));
               }              
             }
-            */
+            
           }
         } catch (Throwable t) {
           t.printStackTrace();
         }	 
     }
     
-    //java.net.SocketException: Permission denied
-    //< uses-permission android:name="android.permission.INTERNET" />
     private void queryGoogleBooks(JsonFactory jsonFactory, String query) throws Exception {
         // Set up Books client.
+    	String bookInfo = "";
         final Books books = new Books(new NetHttpTransport(), jsonFactory);
         books.setApplicationName("Google-BooksSample/1.0");
         books.accessKey = API_KEY;
 
         // Set query string and filter only Google eBooks.
-        System.out.println("Query: [" + query + "]");
+        bookInfo += "Query: [" + query + "]";
         List volumesList = books.volumes.list(query);
         volumesList.filter = "ebooks";
 
         // Execute the query.
         Volumes volumes = volumesList.execute();
         if (volumes.totalItems == 0 || volumes.items == null) {
-          System.out.println("No matches found.");
+        	bookInfo += "No matches found.";
           return;
         }
 
@@ -172,50 +174,48 @@ public class UserMainActivity extends Activity implements OnClickListener
         for (Volume volume : volumes.items) {
           VolumeVolumeInfo volumeInfo = volume.volumeInfo;
           VolumeSaleInfo saleInfo = volume.saleInfo;
-          System.out.println("==========");
+          //System.out.print("==========");
           // Title.
-          System.out.println("Title: " + volumeInfo.title);
-          this.tvTitle = (TextView)this.findViewById(R.id.tvTitle);
-          tvTitle.setText(volumeInfo.title);
+          bookInfo += "Title: " + volumeInfo.title;
+          
           // Author(s).
           java.util.List<String> authors = volumeInfo.authors;
           if (authors != null && !authors.isEmpty()) {
-            System.out.print("Author(s): ");
+        	  bookInfo += "Author(s): ";
             for (int i = 0; i < authors.size(); ++i) {
-              System.out.print(authors.get(i));
+            	bookInfo += authors.get(i);
               if (i < authors.size() - 1) {
-                System.out.print(", ");
+            	  bookInfo += ", ";
               }
             }
-            System.out.println();
+            //System.out.print();
           }
           // Description (if any).
           if (volumeInfo.description != null && volumeInfo.description.length() > 0) {
-            System.out.println("Description: " + volumeInfo.description);
+        	  bookInfo += "Description: " + volumeInfo.description;
           }
           // Ratings (if any).
           if (volumeInfo.ratingsCount != null && volumeInfo.ratingsCount > 0) {
             int fullRating = (int) Math.round(volumeInfo.averageRating.doubleValue());
-            System.out.print("User Rating: ");
+            //System.out.print("User Rating: ");
             for (int i = 0; i < fullRating; ++i) {
-              System.out.print("*");
+              //System.out.print("*");
             }
-            System.out.println(" (" + volumeInfo.ratingsCount + " rating(s))");
+            //System.out.print(" (" + volumeInfo.ratingsCount + " rating(s))");
           }
           // Price (if any).
           if ("FOR_SALE".equals(saleInfo.saleability)) {
             double save = saleInfo.listPrice.amount - saleInfo.retailPrice.amount;
             if (save > 0.0) {
-              System.out.print("List: " + CURRENCY_FORMATTER.format(saleInfo.listPrice.amount)
-                  + "  ");
+              //System.out.print("List: " + CURRENCY_FORMATTER.format(saleInfo.listPrice.amount)
+              //    + "  ");
             }
-            System.out.print("Google eBooks Price: "
-                + CURRENCY_FORMATTER.format(saleInfo.retailPrice.amount));
+            //System.out.print("Google eBooks Price: "+ CURRENCY_FORMATTER.format(saleInfo.retailPrice.amount));
             if (save > 0.0) {
-              System.out.print("  You Save: " + CURRENCY_FORMATTER.format(save) + " ("
-                  + PERCENT_FORMATTER.format(save / saleInfo.listPrice.amount) + ")");
+              //System.out.print("  You Save: " + CURRENCY_FORMATTER.format(save) + " ("
+              //    + PERCENT_FORMATTER.format(save / saleInfo.listPrice.amount) + ")");
             }
-            System.out.println();
+            //System.out.print();
           }
           // Access status.
           String accessViewStatus = volume.accessInfo.accessViewStatus;
@@ -225,13 +225,16 @@ public class UserMainActivity extends Activity implements OnClickListener
           } else if ("SAMPLE".equals(accessViewStatus)) {
             message = "A preview of this book is available from Google eBooks at:";
           }
-          System.out.println(message);
+          //System.out.print(message);
           // Link to Google eBooks.
-          System.out.println(volumeInfo.infoLink);
+          //System.out.print(volumeInfo.infoLink);
         }
-        System.out.println("==========");
-        System.out.println(
-            volumes.totalItems + " total results at http://books.google.com/ebooks?q="
-            + URLEncoder.encode(query, "UTF-8"));
+        //System.out.print("==========");
+        //System.out.print(
+        //    volumes.totalItems + " total results at http://books.google.com/ebooks?q="
+        //    + URLEncoder.encode(query, "UTF-8"));
+        
+        this.tvTitle = (TextView)this.findViewById(R.id.tvTitle);
+        tvTitle.setText(bookInfo);
       }
 }
