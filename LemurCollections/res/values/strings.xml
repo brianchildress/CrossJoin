@@ -3,6 +3,8 @@
     <string name="hello">Welcome to Lemur Collections by CrossJoin Consulting, LLC</string>
     <string name="app_name">Lemur Collections</string>
     <string name="company">CrossJoin Consulting, LLC</string>
+    <string name="menu_new">Scan Book</string>
+    <string name="menu_save">Save</string>
     <!--
  Copyright (C) 2008 ZXing authors
 

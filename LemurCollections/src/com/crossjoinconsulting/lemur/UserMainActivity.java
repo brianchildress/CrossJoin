@@ -6,6 +6,9 @@ import com.google.zxing.integration.android.IntentResult;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -27,8 +30,8 @@ import com.google.api.services.books.v1.model.VolumeSaleInfo;
 import com.google.api.services.books.v1.model.VolumeVolumeInfo;
 import com.google.api.services.books.v1.model.Volumes;
 
-import java.net.URLEncoder;
-import java.text.NumberFormat;
+//import java.net.URLEncoder;
+//import java.text.NumberFormat;
 
 public class UserMainActivity extends Activity implements OnClickListener
 {
@@ -41,8 +44,8 @@ public class UserMainActivity extends Activity implements OnClickListener
 	
 	private static final String API_KEY = "AIzaSyD6B91qHu4WtB54v2FtM1DRnCeqysaupSM";
 	
-	  private static final NumberFormat CURRENCY_FORMATTER = NumberFormat.getCurrencyInstance();
-	  private static final NumberFormat PERCENT_FORMATTER = NumberFormat.getPercentInstance();
+	//  private static final NumberFormat CURRENCY_FORMATTER = NumberFormat.getCurrencyInstance();
+	//  private static final NumberFormat PERCENT_FORMATTER = NumberFormat.getPercentInstance();
 	
 	/** Called when the activity is first created. */
     @Override
@@ -69,7 +72,29 @@ public class UserMainActivity extends Activity implements OnClickListener
 		tvUserName.setText(u.FirstName + " " + u.LastName);
 		dh.close();
 		
-		query("0385729359");
+		//query("0385729359");
+		query("--author", "nicholas sparks");
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.books_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+        case R.id.new_book:
+        	IntentIntegrator.initiateScan(this);
+            return true;
+        case R.id.save_book:
+            //showHelp();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
     }
     
  // Implement the OnClickListener callback
@@ -110,24 +135,34 @@ public class UserMainActivity extends Activity implements OnClickListener
 	    {
 	    	
 	    }
-        query(Contents);
+        query("--isbn", Contents);
 	 }
     
-    private void query(String Contents)
+    private void query(String arg, String Contents)
     {
     	try {
         	JsonFactory jsonFactory = new JacksonFactory();
         	
-          // Parse command line parameters into a query.
-          // Query format: "[<author|isbn|intitle>:]<query>"
-          String prefix = null;
-          String query = "";
-          prefix = "isbn:";
-          query = Contents;
-          
-          if (prefix != null) {
-            query = prefix + query;
-          }
+        	// Parse command line parameters into a query.
+            // Query format: "[<author|isbn|intitle>:]<query>"
+            String prefix = null;
+            String query = "";
+            if ("--author".equals(arg)) {
+                prefix = "inauthor:";
+              } else if ("--isbn".equals(arg)) {
+                prefix = "isbn:";
+              } else if ("--title".equals(arg)) {
+                prefix = "intitle:";
+              } else if (arg.startsWith("--")) {
+                System.err.println("Unknown argument: " + arg);
+                System.exit(1);
+              } else {
+                query = arg;
+              }
+            if (prefix != null) {
+              query = prefix + Contents;
+            }          
+
           try {
             queryGoogleBooks(jsonFactory, query);
             // Success!
@@ -155,18 +190,21 @@ public class UserMainActivity extends Activity implements OnClickListener
         // Set up Books client.
     	String bookInfo = "";
         final Books books = new Books(new NetHttpTransport(), jsonFactory);
-        books.setApplicationName("Google-BooksSample/1.0");
+        books.setApplicationName("Lemur Collections");
         books.accessKey = API_KEY;
 
         // Set query string and filter only Google eBooks.
-        bookInfo += "Query: [" + query + "]";
+        bookInfo.concat("Query: [" + query + "]");
         List volumesList = books.volumes.list(query);
         volumesList.filter = "ebooks";
 
         // Execute the query.
         Volumes volumes = volumesList.execute();
-        if (volumes.totalItems == 0 || volumes.items == null) {
-        	bookInfo += "No matches found.";
+        if (volumes.totalItems == 0 || volumes.items == null) 
+        {
+        	bookInfo = bookInfo.concat("No matches found.");
+        	this.tvTitle = (TextView)this.findViewById(R.id.tvTitle);
+            tvTitle.setText(bookInfo.toString());
           return;
         }
 
@@ -174,25 +212,24 @@ public class UserMainActivity extends Activity implements OnClickListener
         for (Volume volume : volumes.items) {
           VolumeVolumeInfo volumeInfo = volume.volumeInfo;
           VolumeSaleInfo saleInfo = volume.saleInfo;
-          //System.out.print("==========");
-          // Title.
-          bookInfo += "Title: " + volumeInfo.title;
+
+          bookInfo = bookInfo.concat("Title: " + volumeInfo.title);
           
           // Author(s).
           java.util.List<String> authors = volumeInfo.authors;
           if (authors != null && !authors.isEmpty()) {
-        	  bookInfo += "Author(s): ";
+        	  bookInfo = bookInfo.concat("Author(s): ");
             for (int i = 0; i < authors.size(); ++i) {
-            	bookInfo += authors.get(i);
+            	bookInfo = bookInfo.concat(authors.get(i));
               if (i < authors.size() - 1) {
-            	  bookInfo += ", ";
+            	  bookInfo = bookInfo.concat(", ");
               }
             }
             //System.out.print();
           }
           // Description (if any).
           if (volumeInfo.description != null && volumeInfo.description.length() > 0) {
-        	  bookInfo += "Description: " + volumeInfo.description;
+        	  bookInfo = bookInfo.concat("Description: " + volumeInfo.description);
           }
           // Ratings (if any).
           if (volumeInfo.ratingsCount != null && volumeInfo.ratingsCount > 0) {
@@ -204,9 +241,11 @@ public class UserMainActivity extends Activity implements OnClickListener
             //System.out.print(" (" + volumeInfo.ratingsCount + " rating(s))");
           }
           // Price (if any).
-          if ("FOR_SALE".equals(saleInfo.saleability)) {
+          if ("FOR_SALE".equals(saleInfo.saleability)) 
+          {
             double save = saleInfo.listPrice.amount - saleInfo.retailPrice.amount;
-            if (save > 0.0) {
+            if (save > 0.0) 
+            {
               //System.out.print("List: " + CURRENCY_FORMATTER.format(saleInfo.listPrice.amount)
               //    + "  ");
             }
@@ -218,6 +257,7 @@ public class UserMainActivity extends Activity implements OnClickListener
             //System.out.print();
           }
           // Access status.
+          /*
           String accessViewStatus = volume.accessInfo.accessViewStatus;
           String message = "Additional information about this book is available from Google eBooks at:";
           if ("FULL_PUBLIC_DOMAIN".equals(accessViewStatus)) {
@@ -226,6 +266,7 @@ public class UserMainActivity extends Activity implements OnClickListener
             message = "A preview of this book is available from Google eBooks at:";
           }
           //System.out.print(message);
+          */
           // Link to Google eBooks.
           //System.out.print(volumeInfo.infoLink);
         }
@@ -235,6 +276,6 @@ public class UserMainActivity extends Activity implements OnClickListener
         //    + URLEncoder.encode(query, "UTF-8"));
         
         this.tvTitle = (TextView)this.findViewById(R.id.tvTitle);
-        tvTitle.setText(bookInfo);
+        tvTitle.setText(bookInfo.toString());
       }
 }
